@@ -1,0 +1,10 @@
+body {
+  text-align: center;
+  padding: 50px;
+}
+
+main {
+  margin: auto;
+  border: double 1px burlywood;
+  width: 50%;
+}
