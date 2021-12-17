@@ -20,3 +20,7 @@ body {
   border-radius: 100%;
   margin: 25px 3px;
 }
+
+#answer {
+  font-size: 20px;
+}
