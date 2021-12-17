@@ -42,11 +42,25 @@ randomTextRgb();
 const selectedBall = document.querySelector('#balls');
 selectedBall.addEventListener('click', (event) => {
   // id recuperado para pegar o valor do background dos circulos;
-  const bgBalls = event.target.style.backgroundColor;
+  const e = event.target;
+  const bgBalls = e.style.backgroundColor;
   // id recuperado para adicionar um novo texto caso atenda as condições;
   const answer = document.querySelector('#answer');
   // id recuperado para pegar o valor do texto em rgb;
   const textRgb = document.getElementById('rgb-color').innerText;
   if (bgBalls === textRgb) answer.innerText = 'Acertou!';
   else answer.innerText = 'Errou! Tente novamente!';
+});
+
+// Crie um botão para iniciar/reiniciar o jogo
+const restart = document.querySelector('#reset-game');
+
+restart.addEventListener('click', (event) => {
+  const e = event.target;
+  if (e) {
+    coloringBalls();
+    randomTextRgb();
+    const answer = document.querySelector('#answer');
+    answer.innerText = 'Escolha uma cor';
+  }
 });
