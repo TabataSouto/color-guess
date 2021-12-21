@@ -4,20 +4,39 @@
 }
 
 body {
-  text-align: center;
-  padding: 20px;
+  display: flex;
+  justify-content: center;
+  min-height: 95vh;
+  max-height: 50vh;
+  background: url('bg.jpg') no-repeat center center fixed;
+  background-size: cover;
+}
+
+main {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  padding: 3%;
+  border: 4px double;
+  border-color: #ee8bb4 #f1c7d9 #39a0b9 #a3e2f1;
+  box-shadow: 1px 1px 5px 5px rgba(0, 0, 0, 0.233);
+}
+
+header {
+  padding: 20px 0;
 }
 
 #balls {
   display: flex;
-  justify-content: center;
 }
 
 .ball {
   width: 80px;
   height: 80px;
-  border: solid 1px black;
-  border-radius: 100%;
+  border: double 3px white;
+  border-radius: 10%;
   margin: 25px 3px;
 }
 
@@ -26,6 +45,37 @@ body {
 }
 
 #reset-game {
+  max-width: 20%;
   margin: 10px 0;
   padding: 5px;
+}
+
+#rgb-color {
+  max-width: 100%;
+  padding: 0 50px;
+}
+
+#container-points {
+  display: flex;
+  justify-content: center;
+  width: 50%;
+  border: 1px solid;
+  border-color: #f1c7d9 #ee8bb4 #a3e2f1 #39a0b9;
+  border-radius: 5px;
+}
+
+#container-points > p {
+  flex-basis: 70%;
+  padding: 5px;
+  border-right: 1px solid white;
+}
+
+#container-points > div {
+  display: flex;
+  justify-content: center;
+  flex-basis: 25%;
+  padding: 5px;
+  background: linear-gradient(217deg, rgba(231, 58, 124, 0.8), rgba(255, 0, 0, 0) 70.71%),
+    linear-gradient(127deg, rgba(156, 180, 156, 0.8), rgba(0, 255, 0, 0) 70.71%),
+    linear-gradient(336deg, rgba(115, 166, 201, 0.8), rgba(0, 0, 255, 0) 70.71%);
 }

@@ -1,4 +1,7 @@
-// constantes para serem usadas globalmente
+const answer = document.querySelector('#answer');
+const textRgb = document.getElementById('rgb-color');
+const score = document.querySelector('#score');
+let points = 0;
 
 // função para criar os 6 círculos;
 function createBalls() {
@@ -30,37 +33,41 @@ coloringBalls();
 // adicionar texto com rgb aleatório dos três circulos;
 // fou feita a multiplicação por 5 pelo fato da classe ball ter 5 posições;
 const randomTextRgb = () => {
-  const textRgb = document.getElementById('rgb-color');
   const randomColor = Math.round(Math.random() * 5);
   const balls = document.querySelectorAll('.ball');
   const searchColor = balls[randomColor].style.backgroundColor;
-  textRgb.innerText = searchColor;
+  // replace para tirar a palavra 'rgb' das cores;
+  textRgb.innerText = searchColor.replace('rgb', '');
 };
 randomTextRgb();
 
+// Crie um botão para iniciar/reiniciar o jogo
+const restart = document.querySelector('#reset-game');
+restart.addEventListener('click', () => {
+  coloringBalls();
+  randomTextRgb();
+  answer.innerText = 'Escolha uma cor';
+  textRgb.style.color = 'black';
+});
+
 // Clicar em um circulo colorido, deve ser mostrado um texto indicando se está correto ou errado;
 const selectedBall = document.querySelector('#balls');
+
 selectedBall.addEventListener('click', (event) => {
   // id recuperado para pegar o valor do background dos circulos;
   const e = event.target;
-  const bgBalls = e.style.backgroundColor;
+  const bgBalls = e.style.backgroundColor.replace('rgb', '');
   // id recuperado para adicionar um novo texto caso atenda as condições;
-  const answer = document.querySelector('#answer');
   // id recuperado para pegar o valor do texto em rgb;
-  const textRgb = document.getElementById('rgb-color').innerText;
-  if (bgBalls === textRgb) answer.innerText = 'Acertou!';
-  else answer.innerText = 'Errou! Tente novamente!';
-});
-
-// Crie um botão para iniciar/reiniciar o jogo
-const restart = document.querySelector('#reset-game');
-
-restart.addEventListener('click', (event) => {
-  const e = event.target;
-  if (e) {
-    coloringBalls();
-    randomTextRgb();
-    const answer = document.querySelector('#answer');
-    answer.innerText = 'Escolha uma cor';
+  if (bgBalls === textRgb.innerText) {
+    answer.innerText = 'Acertou!';
+    textRgb.style.color = e.style.backgroundColor;
+    restart.innerText = 'Reiniciar Cores';
+    points += 3;
+    score.innerText = `Placar: ${points}`;
+  } else {
+    answer.innerText = 'Errou! Tente novamente!';
+    textRgb.style.color = `rgb${textRgb.innerText}`;
+    restart.innerText = 'Reiniciar Jogo';
   }
 });
